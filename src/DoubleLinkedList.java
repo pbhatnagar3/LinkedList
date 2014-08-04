@@ -45,7 +45,8 @@ public class DoubleLinkedList<T> {
 		if(head == null)
 			return null;
 		T temp = head.data;
-		head.next.previous = null;
+		if(head.next != null)
+			head.next.previous = null;
 		head = head.next;
 		return temp;
 	}
@@ -59,6 +60,35 @@ public class DoubleLinkedList<T> {
 		return temp;
 	}
 
+	public T remove(T data){
+		if(head == null)
+			return null;
+		else{
+			DoubleNode<T> n = head;
+			while(n!= null){
+				if(n.data.equals(data)){
+					T temp = n.data;
+					if(n == head){
+						head = head.next;
+						head.previous = null;
+					}
+					else if(n == tail){
+						tail = tail.previous;
+						tail.next = null;
+					}
+					else{
+						n.previous.next = n.next;
+						n.next.previous = n.previous;
+					}
+
+					return temp;
+				}
+				n = n.next;	
+			}
+			return null;
+		}// end of else
+
+	}
 
 	public String toString(){
 		StringBuffer output = new StringBuffer();
@@ -70,7 +100,11 @@ public class DoubleLinkedList<T> {
 				output.append(n.data + "<-->");
 			n = n.next;
 		}
-		return output.toString();
+		if (output.length() > 0)
+			return output.toString();
+		else
+			return "Nothing in the list right now";
+					
 	}
 }
 
@@ -99,5 +133,15 @@ class DListTester{
 		System.out.println(dList);
 		dList.removeFromTail();
 		System.out.println(dList);
+		dList.removeFromHead();
+		System.out.println(dList);
+		dList.addToHead(5);
+		dList.addToHead(1);
+		dList.addToHead(25);
+		System.out.println(dList);
+		dList.remove(1);
+		System.out.println(dList);
+		
+
 	}
 }
