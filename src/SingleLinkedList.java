@@ -10,7 +10,7 @@
 public class SingleLinkedList<T> {
 
 	Node<T> head = null;
-	
+	int size = 0;
 	public SingleLinkedList(){
 		this.head = null;
 	}
@@ -19,6 +19,7 @@ public class SingleLinkedList<T> {
 	}
 
 	public void appendToTail(T data){
+		this.size++;
 		Node<T> end = new Node<T>(data);
 		Node<T> n = head;
 		if(n == null){
@@ -35,6 +36,7 @@ public class SingleLinkedList<T> {
 		Node<T> prev = null;
 		while(n != null){
 			if(n.data.equals(data)){
+				size--;
 				if(prev == null){
 					T temp = head.data;
 					head = head.next;
@@ -50,6 +52,20 @@ public class SingleLinkedList<T> {
 			n = n.next;
 		}
 		return null;
+	}
+	
+	public Node<T> get(int index){
+		Node<T> temp = head;
+		if( index > size ){
+			return null;
+		}
+		else{
+			while(index!=0){
+				temp = temp.next;
+				index--;
+			}
+			return temp;
+		}
 	}
 
 	public String toString(){
