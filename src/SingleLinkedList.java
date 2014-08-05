@@ -80,6 +80,15 @@ public class SingleLinkedList<T> {
 		}
 		return output.toString();
 	}
+	
+	public static void merge(SingleLinkedList s1, SingleLinkedList s2){
+		Node n = s1.head;
+		while(n.next != null){
+			n = n.next;
+		}
+		n.next = s2.head;
+		//damage done :P
+	}
 }
 
 class Node<T>{
