@@ -10,6 +10,10 @@
 public class SingleLinkedList<T> {
 
 	Node<T> head = null;
+	
+	public SingleLinkedList(){
+		this.head = null;
+	}
 	public SingleLinkedList(T data){
 		head = new Node<T>(data);
 	}
@@ -17,6 +21,10 @@ public class SingleLinkedList<T> {
 	public void appendToTail(T data){
 		Node<T> end = new Node<T>(data);
 		Node<T> n = head;
+		if(n == null){
+			head = end;
+			return;
+		}
 		while(n.next != null)
 			n = n.next;
 		n.next = end;
