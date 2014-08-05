@@ -11,13 +11,22 @@ public class DoubleLinkedList<T> {
 
 	DoubleNode<T> head;
 	DoubleNode<T> tail;
+	int size;
 
 	public DoubleLinkedList(T data){
 		head = new DoubleNode<T>(data);
 		tail = head;
+		size = 0;
+	}
+	
+	public DoubleLinkedList(){
+		head = null;
+		tail = null;
+		size = 0;
 	}
 
 	public void addToTail(T data){
+		size++;
 		if(tail == null){
 			head = new DoubleNode<T>(data);
 			tail = head;
@@ -30,6 +39,7 @@ public class DoubleLinkedList<T> {
 	}
 
 	public void addToHead(T data){
+		size++;
 		if(head == null){
 			head = new DoubleNode<T>(data);
 			tail = head;
@@ -42,6 +52,7 @@ public class DoubleLinkedList<T> {
 	}
 
 	public T removeFromHead(){
+		size--;
 		if(head == null)
 			return null;
 		T temp = head.data;
@@ -52,6 +63,7 @@ public class DoubleLinkedList<T> {
 	}
 
 	public T removeFromTail(){
+		size--; 
 		if(tail == null)
 			return null;
 		T temp = tail.data;
@@ -67,6 +79,7 @@ public class DoubleLinkedList<T> {
 			DoubleNode<T> n = head;
 			while(n!= null){
 				if(n.data.equals(data)){
+					size--;
 					T temp = n.data;
 					if(n == head){
 						head = head.next;
